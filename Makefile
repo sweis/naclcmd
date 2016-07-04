@@ -3,7 +3,7 @@ LDFLAGS += `pkg-config --libs libsodium`
 CFLAGS += `pkg-config --cflags libsodium`
 LIBS = sodium
 
-SRCS = hello.c
+SRCS = selfsign.c
 OBJS = $(SRCS:.c=.o)
 BINS = $(SRCS:.c=)
 
