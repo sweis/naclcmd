@@ -1,23 +1,26 @@
 CC = clang
+#CC = [path here]/afl-2.19b/afl-clang
 LDFLAGS += `pkg-config --libs libsodium`
 CFLAGS += `pkg-config --cflags libsodium`
 LIBS = sodium
 
-SRCS = selfsign.c
+SRCS = gencert.c checkcert.c
 OBJS = $(SRCS:.c=.o)
-BINS = $(SRCS:.c=)
+BINS = gencert checkcert
 
-all: $(SRCS) $(BINS)
+all: $(BINS)
 
-$(BINS): $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) -o $@
+gencert: gencert.o
+	$(CC) gencert.o $(LDFLAGS) -o $@
+
+checkcert: checkcert.o
+	$(CC) checkcert.o $(LDFLAGS) -o $@
 
 .o:
-	echo "Building $@"
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
 	rm $(OBJS)
 
-clean-all: clean
-	rm $(BINS)
+clean-all:
+	rm $(BINS) $(OBJS)
