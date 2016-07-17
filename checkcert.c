@@ -16,6 +16,12 @@ typedef enum _return_codes {
   INVALID_CERT = 6,
 } ReturnCode;
 
+<<<<<<< HEAD
+=======
+//#define ERROR 16
+//#define ERROR 32
+
+>>>>>>> 3cd70d533a25029742f1ef2664f82242c406f99d
 /**
  * Format is:
  * [ Signature(Public Key) | Public Key ]
